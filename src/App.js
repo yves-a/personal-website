@@ -165,7 +165,7 @@ const App = () => {
               </Typography>
             </ThemeProvider>
           </Box>
-          <Box
+          {/* <Box
             component="img"
             sx={{
               width: { xs: '30%', md: '23%' },
@@ -176,7 +176,7 @@ const App = () => {
             }}
             alt="Yves"
             src={avatorBg}
-          />
+          /> */}
         </Container>
       </Container>
       <Projects />
