@@ -179,7 +179,7 @@ const App = () => {
           /> */}
         </Container>
       </Container>
-      <Projects />
+      {/* <Projects /> */}
       <Footer />
     </Box>
   )
