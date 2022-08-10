@@ -83,12 +83,12 @@ const Projects = () => {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      Spotify Web App Integration
+                      Reminiscing Record Player
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       React program that allows the user to see their top 10
                       most listened to songs from the past month, and make a
-                      playlist out of their top hits.
+                      playlist out of their top hits, using the Spotify API.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
