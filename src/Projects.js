@@ -53,7 +53,7 @@ const Projects = () => {
         paddingTop: 2,
         paddingLeft: 1,
         paddingBottom: 10,
-        paddingRight: 0,
+        paddingRight: 1,
         margin: 0,
         width: '100%',
         height: '50vh',
@@ -66,7 +66,7 @@ const Projects = () => {
         <Typography variant="h3" component="div" align="left" gutterBottom>
           Projects.
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={1.5}>
           <Grid item xs={4}>
             <Card sx={{ maxWidth: 500 }}>
               <a
