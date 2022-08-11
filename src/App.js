@@ -71,7 +71,7 @@ const App = () => {
         margin: 0,
         padding: 0,
         fontFamily: 'Ubuntu',
-        minWidth: 500,
+        minWidth: 350,
       }}
     >
       <Container
@@ -88,7 +88,12 @@ const App = () => {
         }}
       >
         <Box sx={{ flexGrow: 1, maxWidth: '100%' }}>
-          <AppBar position="static" color="transparent" elevation={0}>
+          <AppBar
+            position="static"
+            color="transparent"
+            elevation={0}
+            sx={{ maxWidth: '100%' }}
+          >
             <Toolbar>
               <Button
                 href="/#yves"

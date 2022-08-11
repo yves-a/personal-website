@@ -20,12 +20,38 @@ theme.typography.h3 = {
     fontSize: '4rem',
   },
 }
+
+theme.typography.h5 = {
+  fontSize: '0.76rem',
+  '@media (min-width:400px)': {
+    fontSize: '0.76rem',
+  },
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem',
+  },
+}
+theme.typography.body2 = {
+  fontSize: '0.7rem',
+  '@media (min-width:400px)': {
+    fontSize: '0.7rem',
+  },
+  '@media (min-width:600px)': {
+    fontSize: '1.1rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '1.4rem',
+  },
+}
 const Projects = () => {
   return (
     <Box
       sx={{
         m: 2,
-        padding: 5,
+        paddingTop: 2,
+        paddingLeft: 1,
         paddingBottom: 10,
         paddingRight: 0,
         margin: 0,
@@ -33,7 +59,7 @@ const Projects = () => {
         height: '50vh',
         backgroundColor: '#fff5f7',
         minHeight: '500px',
-        minWidth: 500,
+        minWidth: 300,
       }}
     >
       <ThemeProvider theme={theme}>
