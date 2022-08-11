@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 const theme = createTheme()
 theme.typography.h3 = {
   fontSize: '2rem',
+  fontFamily: ['Roboto'],
   '@media (min-width:600px)': {
     fontSize: '2rem',
   },
@@ -23,6 +24,7 @@ theme.typography.h3 = {
 
 theme.typography.h5 = {
   fontSize: '0.76rem',
+  fontFamily: ['Roboto'],
   '@media (min-width:400px)': {
     fontSize: '0.76rem',
   },
@@ -34,6 +36,7 @@ theme.typography.h5 = {
   },
 }
 theme.typography.body2 = {
+  fontFamily: ['Roboto'],
   fontSize: '0.7rem',
   '@media (min-width:400px)': {
     fontSize: '0.7rem',
@@ -42,7 +45,7 @@ theme.typography.body2 = {
     fontSize: '1.1rem',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '1.4rem',
+    fontSize: '1.2rem',
   },
 }
 const Projects = () => {
