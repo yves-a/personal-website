@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import checker from './img/product-checker.png'
 import spotify from './img/spotify.png'
-import sort from './img/sort.png'
+import medical from './img/medical.png'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 const theme = createTheme()
 theme.typography.h3 = {
@@ -127,23 +127,24 @@ const Projects = () => {
           <Grid item xs={4}>
             <Card sx={{ maxWidth: 500 }}>
               <a
-                href="https://github.com/yves-a/sorting-algorithm-visualizer"
+                href="https://github.com/yves-a/medical-record-application"
                 style={{ textDecoration: 'none', color: 'black' }}
               >
                 <CardActionArea>
                   <CardMedia
                     component="img"
                     height="140"
-                    image={sort}
-                    alt="sorting algorithm visualizer"
+                    image={medical}
+                    alt="medical record application"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      Sorting Algorithm Visualizer
+                      Medical Record Application
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Python program that allows the user to visualize popular
-                      sorting algorithms.
+                      React application that allows doctors to handle diagnoses
+                      and necessary health information for their patients with
+                      the help of TypeScript.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
