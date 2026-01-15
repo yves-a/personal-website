@@ -1,16 +1,58 @@
 ---
+import { getCollection } from 'astro:content';
 
+// Fetch all posts and sort them by date (newest first)
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3); // Just show the top 3 on the home page
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Developer Portfolio & Blog</title>
+        <style>
+            body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 2rem; line-height: 1.6; }
+            section { margin-bottom: 3rem; }
+            .post-card { border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; list-style: none; }
+            .post-card a { text-decoration: none; color: #0070f3; font-weight: bold; }
+            .date { color: #666; font-size: 0.9rem; }
+            nav { margin-bottom: 2rem; }
+            nav a { margin-right: 1rem; }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog">All Posts</a>
+        </nav>
+
+        <header>
+            <h1>CS Portfolio</h1>
+            <p>Welcome! I'm a software engineering student interested in Cloud, QA, and AI.</p>
+        </header>
+
+        <section id="blog-preview">
+            <h2>Latest Blog Posts</h2>
+            <ul>
+                {latestPosts.map(post => (
+                    <li class="post-card">
+                        <div class="date">{post.data.pubDate.toDateString()}</div>
+                        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                        <p>{post.data.description}</p>
+                    </li>
+                ))}
+            </ul>
+            <a href="/blog">View all posts &rarr;</a>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Check out my work on GitHub, including my AI resume tool and NBA predictor.</p>
+        </section>
+    </body>
 </html>
