@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -14,9 +15,9 @@ import '../styles/global.css';
   <body>
     <div class="container">
       <nav>
-        <a href="/">home</a>
-        <a href="/blog">writing</a>
-        <a href="/life">life</a>
+        <a href={`${base}`}>home</a>
+        <a href={`${base}blog`}>writing</a>
+        <a href={`${base}life`}>life</a>
         <a href="https://github.com/yves-a">github</a>
       </nav>
 

@@ -6,6 +6,7 @@ const allPosts = await getCollection('blog');
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -52,9 +53,9 @@ const latestPosts = allPosts
   <body>
     <div class="container">
       <nav>
-        <a href="/">home</a>
-        <a href="/blog">writing</a>
-		<a href="/life">life</a>
+        <a href={`${base}`}>home</a>
+        <a href={`${base}blog`}>writing</a>
+		<a href={`${base}life`}>life</a>
         <a href="https://github.com/yves-a">github</a>
       </nav>
 
@@ -66,7 +67,7 @@ const latestPosts = allPosts
       </header>
 
       <img 
-        src="/personal-website/yves.jpg" 
+        src={`${base}yves.jpg`} 
         alt="yves alikalfic" 
         class="hero-image"
       />
@@ -95,7 +96,7 @@ const latestPosts = allPosts
         <ul class="post-list">
           {latestPosts.map(post => (
             <li class="post-card">
-              <a href={`/blog/${post.slug}`}>
+              <a href={`${base}blog/${post.slug}`}>
                 <div class="date">{post.data.pubDate.toUTCString().split(' ').slice(0, 4).join(' ').toLowerCase()}</div>
                 <h3>{post.data.title}</h3>
                 <p class="description">{post.data.description}</p>
