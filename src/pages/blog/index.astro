@@ -1,12 +1,61 @@
-import { defineCollection, z } from 'astro:content';
+---
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
 
-const blog = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-  }),
-});
+// fetch all posts from the 'blog' collection
+const posts = await getCollection('blog');
 
-export const collections = { blog };
+// sort them so the newest post is at the top
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>writing — archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/">home</a>
+        <a href="/blog">writing</a>
+        <a href="/life">life</a>
+        <a href="https://github.com/yves-a">github</a>
+      </nav>
+
+      <header style="margin-bottom: 3rem;">
+        <h1>writing</h1>
+        <p class="description">thoughts on code, craft, and cs.</p>
+      </header>
+
+      <main>
+        <ul class="post-list">
+          {sortedPosts.map((post) => (
+            <li class="post-card">
+              <a href={`/blog/${post.slug}`}>
+                <div class="date">
+                  {post.data.pubDate.toLocaleDateString('en-us', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    timeZone: 'UTC',
+                  }).toLowerCase()}
+                </div>
+                <h3>{post.data.title}</h3>
+                <p class="description">{post.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </main>
+
+      {sortedPosts.length === 0 && <p>no posts found yet.</p>}
+    </div>
+  </body>
+</html>

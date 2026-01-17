@@ -1,58 +1,109 @@
 ---
+import '../styles/global.css';
 import { getCollection } from 'astro:content';
 
-// Fetch all posts and sort them by date (newest first)
 const allPosts = await getCollection('blog');
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3); // Just show the top 3 on the home page
+  .slice(0, 3);
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Developer Portfolio & Blog</title>
-        <style>
-            body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 2rem; line-height: 1.6; }
-            section { margin-bottom: 3rem; }
-            .post-card { border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; list-style: none; }
-            .post-card a { text-decoration: none; color: #0070f3; font-weight: bold; }
-            .date { color: #666; font-size: 0.9rem; }
-            nav { margin-bottom: 2rem; }
-            nav a { margin-right: 1rem; }
-        </style>
-    </head>
-    <body>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/blog">All Posts</a>
-        </nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>yves alikalfic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+      .hero-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin: 2rem 0;
+        filter: grayscale(20%);
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      header {
+        margin-bottom: 1rem;
+      }
 
-        <header>
-            <h1>CS Portfolio</h1>
-            <p>Welcome! I'm a software engineering student interested in Cloud, QA, and AI.</p>
-        </header>
+      .experience-item {
+        margin-bottom: 1.5rem;
+        list-style: none;
+      }
 
-        <section id="blog-preview">
-            <h2>Latest Blog Posts</h2>
-            <ul>
-                {latestPosts.map(post => (
-                    <li class="post-card">
-                        <div class="date">{post.data.pubDate.toDateString()}</div>
-                        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-                        <p>{post.data.description}</p>
-                    </li>
-                ))}
-            </ul>
-            <a href="/blog">View all posts &rarr;</a>
-        </section>
+      .experience-item .role {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Check out my work on GitHub, including my AI resume tool and NBA predictor.</p>
-        </section>
-    </body>
+      .experience-item .desc {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        max-width: 500px; /* keeps the text from stretching too far */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/">home</a>
+        <a href="/blog">writing</a>
+		<a href="/life">life</a>
+        <a href="https://github.com/yves-a">github</a>
+      </nav>
+
+      <header>
+        <h1>yves alikalfic</h1>
+        <p class="description">
+          5th year computer science student at queen's university.
+        </p>
+      </header>
+
+      <img 
+        src="/yves.jpg" 
+        alt="yves alikalfic" 
+        class="hero-image"
+      />
+
+      <section id="experience" style="margin-bottom: 4rem;">
+        <h2>previously</h2>
+        <ul style="padding: 0;">
+			<li class="experience-item">
+            <span class="role">qa engineer</span>
+            <p class="desc">built out entire mobile automation testing framework with ci/cd.</p>
+          </li>
+          <li class="experience-item">
+            <span class="role">cloud analyst</span>
+            <p class="desc">improved usability and security of internal web portals.</p>
+          </li>
+		  <li class="experience-item">
+            <span class="role">software developer</span>
+            <p class="desc">created chrome extension.</p>
+          </li>
+          
+        </ul>
+      </section>
+
+      <section>
+        <h2>latest writing</h2>
+        <ul class="post-list">
+          {latestPosts.map(post => (
+            <li class="post-card">
+              <a href={`/blog/${post.slug}`}>
+                <div class="date">{post.data.pubDate.toUTCString().split(' ').slice(0, 4).join(' ').toLowerCase()}</div>
+                <h3>{post.data.title}</h3>
+                <p class="description">{post.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </body>
 </html>

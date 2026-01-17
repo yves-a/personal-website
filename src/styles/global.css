@@ -1,0 +1,128 @@
+:root {
+  --bg-color: #f5f2ed;
+  --text-primary: #2d2a26;
+  --text-muted: #6b665f;
+  --accent: #7a7268;
+  --card-bg: #ffffff;
+  --max-width: 750px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* removes any browser-level animations or transitions */
+  transition: none !important;
+  animation: none !important;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'inter', system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+h1, h2, h3 {
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.5rem; font-weight: 800; }
+h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; }
+
+a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* removed the hover transform animation */
+.post-card:hover {
+  border-color: var(--accent);
+}
+
+.post-card a {
+  text-decoration: none;
+}
+
+.date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+article.prose code {
+  background: #e9e5df;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+  text-transform: none; /* keeps code snippets in their original casing */
+}
+
+/* 1. Inline code (e.g. `this`) */
+code {
+  background-color: #f1f5f9; /* Soft light gray/blue */
+  color: #c026d3;            /* Optional: subtle color for inline code */
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;        /* Rounded edges */
+  font-family: monospace;
+}
+
+/* 2. The Code Block Container */
+pre {
+  background-color: #272c35; /* Soft Slate (Not pure black) */
+  padding: 1.5rem;           /* Generous internal spacing */
+  border-radius: 12px;       /* Heavily rounded corners */
+  overflow-x: auto;          /* Scrollbar if code is too wide */
+  border: 1px solid #334155; /* Subtle border to define the shape */
+}
+
+/* 3. The Code inside the Block */
+pre code {
+  background-color: transparent !important; /* Fixes the "highlighted" line issue */
+  padding: 0 !important;
+  color: #e2e8f0;            /* Off-white text for better readability */
+  border-radius: 0;
+}

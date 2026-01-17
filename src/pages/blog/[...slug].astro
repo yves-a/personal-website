@@ -1,6 +1,8 @@
 ---
+import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 
+// 1. generate a unique path for every markdown file in src/content/blog/
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
   return blogEntries.map(entry => ({
@@ -8,10 +10,43 @@ export async function getStaticPaths() {
   }));
 }
 
+// 2. get the specific post data and render the markdown content
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<h1>{entry.data.title}</h1>
-<p>Published on: {entry.data.pubDate.toDateString()}</p>
-<article>
-  <Content /> </article>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{entry.data.title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/">home</a>
+        <a href="/blog">writing</a>
+        <a href="/life">life</a>
+        <a href="https://github.com">github</a>
+      </nav>
+
+      <article class="prose">
+        <header style="margin-bottom: 3rem;">
+          <div class="date">{entry.data.pubDate.toUTCString().split(' ').slice(0, 4).join(' ').toLowerCase()}</div>
+          <h1>{entry.data.title}</h1>
+          <p class="description" style="font-style: italic;">{entry.data.description}</p>
+        </header>
+
+        <main>
+          <Content /> </main>
+      </article>
+
+      <footer style="margin-top: 5rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem;">
+        <a href="/blog">← back to writing</a>
+      </footer>
+    </div>
+  </body>
+</html>
