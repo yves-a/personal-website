@@ -12,6 +12,7 @@ pubDate: 2026-01-17
     * **hardware**: TP-Link IP camera, old Lenovo laptop running Debian.
     * **software**: Dockerized setup using `MediaMTX` to convert `RTSP` to `HLS`.
     * **networking**: Cloudflare Tunnel (no port forwarding required).
+* **[github](https://github.com/yves-a/bar-camera)**
 
 <br>
 <br>
